@@ -1,0 +1,6 @@
+detenuti = {
+    ("Luca Rossi", "Furto", "6 mesi"),
+    ("Marco Bianchi", "Vandalismo", "1 anno"),
+    ("Samir Ahmed", "Bullismo", "2 anni"),
+    ("Davide Esposito", "Rapina", "3 anni")
+}
