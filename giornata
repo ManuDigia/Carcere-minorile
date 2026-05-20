@@ -1,0 +1,10 @@
+attivita = {
+    "Scuola",
+    "Giardinaggio",
+    "Lettura",
+    "Volontariato",
+    "Visita dei genitori",
+    "Sport",
+    "Cena",
+    "Riposo"
+}
