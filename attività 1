@@ -1,0 +1,76 @@
+  print("Nome:", detenuto["nome"])
+    print("Reato:", detenuto["reato"])
+    print("Condotta:", condotta)
+    print("Tempo restante:", detenuto["tempo"], "mesi")
+    print(messaggio)
+
+    print("\n===== ATTIVITÀ =====\n")
+
+    # SCUOLA
+    voto = random.randint(5, 10)
+
+    print("SCUOLA")
+    print("- Studiano italiano")
+    print("- Fanno matematica")
+    print("- Voto preso:", voto)
+    print()
+
+    # SPORT
+    squadra_rossa = random.randint(0, 5)
+    squadra_blu = random.randint(0, 5)
+
+    print("SPORT")
+    print("- Partita di calcio")
+    print("- Squadra Rossa:", squadra_rossa)
+    print("- Squadra Blu:", squadra_blu)
+
+    if squadra_rossa > squadra_blu:
+        print("- Vince la Squadra Rossa")
+
+    elif squadra_blu > squadra_rossa:
+        print("- Vince la Squadra Blu")
+
+    else:
+        print("- Pareggio")
+
+    print("- Allenamento fisico")
+    print("- Corsa nel cortile")
+    print()
+
+    # GIARDINAGGIO
+    raccolto = random.choice([
+        "insalata",
+        "pomodori",
+        "carote",
+        "zucchine"
+    ])
+
+    print("GIARDINAGGIO")
+    print("- Innaffiano le piante")
+    print("- Potano gli alberi")
+    print("- Raccolgono:", raccolto)
+    print("- Puliscono il giardino")
+    print()
+
+    # LETTURA
+    libro = random.choice([
+        "Harry Potter",
+        "Il Piccolo Principe",
+        "Pinocchio"
+    ])
+
+    print("LETTURA")
+    print("- Libro letto:", libro)
+    print("- Discussione della storia")
+    print()
+
+    # VOLONTARIATO
+    ore = random.randint(1, 4)
+
+    print("VOLONTARIATO")
+    print("- Ore di aiuto:", ore)
+    print("- Sistemano le aule")
+    print("- Puliscono gli spazi comuni")
+    print()
+
+    print("=====================================\n")
