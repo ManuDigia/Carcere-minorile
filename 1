@@ -1,0 +1,82 @@
+import random
+import os
+import time
+
+# =========================================
+# DETENUTI
+# =========================================
+
+detenuti = [
+    {
+        "nome": "Luca Rossi",
+        "reato": "Furto",
+        "tempo": 8
+    },
+
+    {
+        "nome": "Marco Bianchi",
+        "reato": "Vandalismo",
+        "tempo": 12
+    },
+
+    {
+        "nome": "Samir Ahmed",
+        "reato": "Bullismo",
+        "tempo": 18
+    }
+]
+
+# =========================================
+# VARIABILI
+# =========================================
+
+giorno = 1
+energia = 10
+reputazione = 0
+amici = 0
+libero = False
+
+prossimo_evento_fuga = random.randint(4, 7)
+
+# =========================================
+# FUNZIONI
+# =========================================
+
+def clear():
+    os.system("cls" if os.name == "nt" else "clear")
+
+
+def pausa():
+    input("\nPremi INVIO per continuare...")
+
+
+def barra(valore, massimo):
+
+    piena = "█" * valore
+    vuota = "░" * (massimo - valore)
+
+    return piena + vuota
+
+
+def stato():
+
+    print("========================================")
+    print("        CARCERE MINORILE RPG")
+    print("========================================\n")
+
+    print("👤 Nome:", giocatore["nome"])
+    print("⚖️ Reato:", giocatore["reato"])
+    print("📅 Giorno:", giorno)
+    print("⏳ Pena:", giocatore["tempo"], "mesi")
+
+    print("\n⚡ Energia:",
+          barra(energia, 10),
+          energia)
+
+    print("⭐ Reputazione:",
+          reputazione)
+
+    print("🤝 Amici:",
+          amici)
+
+    print("\n========================================")
