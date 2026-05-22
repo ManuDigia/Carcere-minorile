@@ -1,9 +1,12 @@
+
+
+ 
+ 
   print("Nome:", detenuto["nome"])
     print("Reato:", detenuto["reato"])
     print("Condotta:", condotta)
     print("Tempo restante:", detenuto["tempo"], "mesi")
-    print(messaggio)
-
+s
     print("\n===== ATTIVITÀ =====\n")
 
     # SCUOLA
