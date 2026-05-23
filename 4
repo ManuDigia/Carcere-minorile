@@ -404,3 +404,132 @@ while libero == False and giocatore["tempo"] > 0:
         print("😴 Ti senti riposato.")
 
         pausa()
+        
+    # =========================================
+    # EVENTO FUGA
+    # =========================================
+
+    if giorno >= prossimo_evento_fuga:
+
+        clear()
+
+        print("⚠️ EVENTO SPECIALE ⚠️\n")
+
+        print("Alcuni detenuti parlano di una fuga.")
+
+        print("\n1. Partecipi")
+        print("2. Ti nascondi")
+        print("3. Informi le guardie")
+        print("4. Ignori tutto")
+
+        scelta_fuga = input("\nScelta: ")
+
+        # =========================================
+        # PARTECIPI
+        # =========================================
+
+        if scelta_fuga == "1":
+
+            clear()
+
+            print("🔥 Scoppia il caos nel carcere.\n")
+
+            print("1. Corri")
+            print("2. Aiuti un amico")
+            print("3. Ti nascondi")
+            print("4. Ti arrendi")
+
+            scelta_finale = input("\nScelta: ")
+
+            # CORRERE
+            if scelta_finale == "1":
+
+                fortuna = random.randint(1, 5)
+
+                if fortuna == 1:
+
+                    print("\n🏃 Sei riuscito a scappare.")
+                    print("🏆 FINALE SEGRETO!")
+
+                    libero = True
+
+                elif fortuna == 2:
+
+                    print("\n🚨 Le guardie ti fermano.")
+
+                    giocatore["tempo"] += 3
+
+                elif fortuna == 3:
+
+                    print("\n🌧️ Ti perdi nel cortile.")
+
+                elif fortuna == 4:
+
+                    print("\n🫥 Ti nascondi nel caos.")
+
+                else:
+
+                    print("\n❌ La fuga fallisce.")
+
+            # AIUTI
+            elif scelta_finale == "2":
+
+                print("\n🤝 Aiuti un detenuto.")
+
+                reputazione += 2
+                amici += 1
+
+            # NASCONDERSI
+            elif scelta_finale == "3":
+
+                print("\n🫥 Ti nascondi.")
+
+                fortuna = random.randint(1, 2)
+
+                if fortuna == 1:
+
+                    print("✅ Nessuno ti trova.")
+
+                else:
+
+                    print("🚨 Le guardie ti scoprono.")
+
+                    giocatore["tempo"] += 2
+
+            # ARRENDERSI
+            elif scelta_finale == "4":
+
+                print("\n✋ Ti arrendi.")
+
+                giocatore["tempo"] -= 2
+
+            pausa()
+
+        # NASCONDERSI
+        elif scelta_fuga == "2":
+
+            print("\n🫥 Eviti problemi.")
+
+            pausa()
+
+        # INFORMI
+        elif scelta_fuga == "3":
+
+            print("\n📢 Informi le guardie.")
+
+            reputazione += 2
+            giocatore["tempo"] -= 1
+
+            pausa()
+
+        # IGNORI
+        elif scelta_fuga == "4":
+
+            print("\n😐 Ignori tutto.")
+
+            pausa()
+
+        # Nuova distanza casuale
+        distanza = random.randint(2, 6)
+
+        prossimo_evento_fuga = giorno + distanza
