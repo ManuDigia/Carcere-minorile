@@ -1,0 +1,596 @@
+      
+      import random
+import os
+import time
+
+# =========================================
+# DETENUTI
+# =========================================
+
+detenuti = [
+    {
+        "nome": "Luca Rossi",
+        "reato": "Furto",
+        "tempo": 8
+    },
+
+    {
+        "nome": "Marco Bianchi",
+        "reato": "Vandalismo",
+        "tempo": 12
+    },
+
+    {
+        "nome": "Samir Ahmed",
+        "reato": "Bullismo",
+        "tempo": 18
+    }
+]
+
+# =========================================
+# VARIABILI
+# =========================================
+
+giorno = 1
+energia = 10
+reputazione = 0
+amici = 0
+libero = False
+
+prossimo_evento_fuga = random.randint(4, 7)
+
+# =========================================
+# FUNZIONI
+# =========================================
+
+def clear():
+    os.system("cls" if os.name == "nt" else "clear")
+
+
+def pausa():
+    input("\nPremi INVIO per continuare...")
+
+
+def barra(valore, massimo):
+
+    piena = "█" * valore
+    vuota = "░" * (massimo - valore)
+
+    return piena + vuota
+
+
+def stato():
+
+    print("========================================")
+    print("        CARCERE MINORILE RPG")
+    print("========================================\n")
+
+    print("👤 Nome:", giocatore["nome"])
+    print("⚖️ Reato:", giocatore["reato"])
+    print("📅 Giorno:", giorno)
+    print("⏳ Pena:", giocatore["tempo"], "mesi")
+
+    print("\n⚡ Energia:",
+          barra(energia, 10),
+          energia)
+
+    print("⭐ Reputazione:",
+          reputazione)
+
+    print("🤝 Amici:",
+          amici)
+
+    print("\n========================================")
+# =========================================
+# SCELTA DETENUTO
+# =========================================
+
+clear()
+
+print("========================================")
+print("        CARCERE MINORILE RPG")
+print("========================================\n")
+
+print("SCEGLI IL DETENUTO:\n")
+
+for i, d in enumerate(detenuti):
+
+    print(
+        str(i + 1) + ".",
+        d["nome"],
+        "-",
+        d["reato"],
+        "-",
+        str(d["tempo"]) + " mesi"
+    )
+
+scelta = int(input("\nNumero: ")) - 1
+
+giocatore = detenuti[scelta]
+
+# =========================================
+# CICLO PRINCIPALE
+# =========================================
+
+while libero == False and giocatore["tempo"] > 0:
+
+    clear()
+
+    stato()
+
+    # =========================================
+    # CONDOTTA
+    # =========================================
+
+    condotta = random.choice([
+        "Buona",
+        "Cattiva"
+    ])
+
+    print("\n📋 CONDOTTA:", condotta)
+
+    if condotta == "Buona":
+
+        giocatore["tempo"] -= 1
+        reputazione += 1
+
+        print("✅ Riduzione pena.")
+
+    else:
+
+        giocatore["tempo"] += 1
+        reputazione -= 1
+
+        print("⚠️ Problemi disciplinari.")
+         # =========================================
+    # MENU
+    # =========================================
+
+    print("\nATTIVITÀ:\n")
+
+    print("1. 📚 Scuola")
+    print("2. ⚽ Sport")
+    print("3. 🌱 Giardinaggio")
+    print("4. 📖 Lettura")
+    print("5. 🤝 Socializzare")
+    print("6. 😴 Riposo")
+
+    scelta_att = input("\nScelta: ")
+
+    # =========================================
+    # SCUOLA
+    # =========================================
+
+    if scelta_att == "1":
+
+        clear()
+        print("========== SCUOLA ==========\n")
+
+        punti = 0
+
+        while punti < 3:
+
+            domanda = random.randint(1, 3)
+
+            if domanda == 1:
+
+                risposta = int(
+                    input("Quanto fa 7 x 8? ")
+                )
+
+                if risposta == 56:
+
+                    print("✅ Corretto!")
+                    punti += 1
+
+                else:
+
+                    print("❌ Sbagliato.")
+
+            elif domanda == 2:
+
+                risposta = input(
+                    "Capitale d'Italia? "
+                )
+
+                if risposta.lower() == "roma":
+
+                    print("✅ Corretto!")
+                    punti += 1
+
+                else:
+
+                    print("❌ Sbagliato.")
+
+            else:
+
+                risposta = int(
+                    input("Quanto fa 100 - 45? ")
+                )
+
+                if risposta == 55:
+
+                    print("✅ Corretto!")
+                    punti += 1
+
+                else:
+
+                    print("❌ Sbagliato.")
+
+        reputazione += 2
+        energia -= 1
+
+        print("\n📚 Lezione completata.")
+
+        pausa()
+
+    # =========================================
+    # SPORT
+    # =========================================
+
+    elif scelta_att == "2":
+
+        clear()
+
+        print("========== SPORT ==========\n")
+
+        punti = 0
+
+        while punti < 5:
+
+            print("\nPunti:", punti)
+
+            print("\n1. Correre")
+            print("2. Tirare")
+            print("3. Difendere")
+
+            azione = input("\nAzione: ")
+
+            successo = random.randint(1, 2)
+
+            if successo == 1:
+
+                print("✅ Azione riuscita!")
+                punti += 1
+
+            else:
+
+                print("❌ Azione fallita.")
+
+        reputazione += 1
+        energia -= 2
+
+        print("\n⚽ Allenamento completato.")
+
+        pausa()
+
+    # =========================================
+    # GIARDINAGGIO
+    # =========================================
+
+    elif scelta_att == "3":
+
+        clear()
+
+        print("======= GIARDINAGGIO =======\n")
+
+        salute = 0
+
+        while salute < 5:
+
+            print("🌱 Salute pianta:", salute)
+
+            print("\n1. Annaffiare")
+            print("2. Pulire")
+            print("3. Concimare")
+
+            scelta_g = input("\nScelta: ")
+
+            crescita = random.randint(1, 2)
+
+            salute += crescita
+
+            print("✅ La pianta cresce.")
+
+        reputazione += 1
+        energia -= 1
+
+        print("\n🌿 Giardino completato.")
+
+        pausa()
+
+    # =========================================
+    # LETTURA
+    # =========================================
+
+    elif scelta_att == "4":
+
+        clear()
+
+        print("========== LETTURA ==========\n")
+
+        pagine = 0
+
+        libro = random.choice([
+            "Harry Potter",
+            "Pinocchio",
+            "Il Piccolo Principe"
+        ])
+
+        print("📖 Libro:", libro)
+
+        while pagine < 20:
+
+            print("\nPagine:", pagine)
+
+            print("\n1. Leggere")
+            print("2. Riflettere")
+            print("3. Riposare")
+
+            scelta_l = input("\nScelta: ")
+
+            if scelta_l == "1":
+
+                pagine += 5
+
+                print("📚 Continui a leggere.")
+
+            elif scelta_l == "2":
+
+                pagine += 3
+
+                print("💭 Rifletti sulla storia.")
+
+            else:
+
+                print("😴 Ti rilassi.")
+
+        reputazione += 2
+
+        print("\n📖 Sessione completata.")
+
+        pausa()
+
+    # =========================================
+    # SOCIALIZZARE
+    # =========================================
+
+    elif scelta_att == "5":
+
+        clear()
+
+        print("======= SOCIALIZZARE =======\n")
+
+        evento = random.randint(1, 3)
+
+        if evento == 1:
+
+            amici += 1
+
+            print("🤝 Hai fatto amicizia.")
+
+        elif evento == 2:
+
+            reputazione -= 1
+
+            print("😡 Hai litigato.")
+
+        else:
+
+            reputazione += 1
+            amici += 1
+
+            print("⭐ Hai aiutato qualcuno.")
+
+        pausa()
+
+    # =========================================
+    # RIPOSO
+    # =========================================
+
+    elif scelta_att == "6":
+
+        clear()
+
+        print("=========== RIPOSO ===========\n")
+
+        energia += 3
+
+        if energia > 10:
+            energia = 10
+
+        print("😴 Ti senti riposato.")
+
+        pausa()
+      # =========================================
+    # EVENTO CASUALE
+    # =========================================
+
+    evento = random.randint(1, 4)
+
+    clear()
+
+    print("========== EVENTO ==========\n")
+
+    if evento == 1:
+
+        print("⭐ Hai ricevuto un complimento.")
+
+    elif evento == 2:
+
+        print("📨 Hai ricevuto una lettera.")
+
+    elif evento == 3:
+
+        print("🧹 Hai pulito la stanza.")
+
+    else:
+
+        print("😌 Giornata tranquilla.")
+
+    pausa()
+
+    # =========================================
+    # EVENTO FUGA
+    # =========================================
+
+    if giorno >= prossimo_evento_fuga:
+
+        clear()
+
+        print("⚠️ EVENTO SPECIALE ⚠️\n")
+
+        print("Alcuni detenuti parlano di una fuga.")
+
+        print("\n1. Partecipi")
+        print("2. Ti nascondi")
+        print("3. Informi le guardie")
+        print("4. Ignori tutto")
+
+        scelta_fuga = input("\nScelta: ")
+
+        # =========================================
+        # PARTECIPI
+        # =========================================
+
+        if scelta_fuga == "1":
+
+            clear()
+
+            print("🔥 Scoppia il caos nel carcere.\n")
+
+            print("1. Corri")
+            print("2. Aiuti un amico")
+            print("3. Ti nascondi")
+            print("4. Ti arrendi")
+
+            scelta_finale = input("\nScelta: ")
+
+            # CORRERE
+            if scelta_finale == "1":
+
+                fortuna = random.randint(1, 5)
+
+                if fortuna == 1:
+
+                    print("\n🏃 Sei riuscito a scappare.")
+                    print("🏆 FINALE SEGRETO!")
+
+                    libero = True
+
+                elif fortuna == 2:
+
+                    print("\n🚨 Le guardie ti fermano.")
+
+                    giocatore["tempo"] += 3
+
+                elif fortuna == 3:
+
+                    print("\n🌧️ Ti perdi nel cortile.")
+
+                elif fortuna == 4:
+
+                    print("\n🫥 Ti nascondi nel caos.")
+
+                else:
+
+                    print("\n❌ La fuga fallisce.")
+
+            # AIUTI
+            elif scelta_finale == "2":
+
+                print("\n🤝 Aiuti un detenuto.")
+
+                reputazione += 2
+                amici += 1
+
+            # NASCONDERSI
+            elif scelta_finale == "3":
+
+                print("\n🫥 Ti nascondi.")
+
+                fortuna = random.randint(1, 2)
+
+                if fortuna == 1:
+
+                    print("✅ Nessuno ti trova.")
+
+                else:
+
+                    print("🚨 Le guardie ti scoprono.")
+
+                    giocatore["tempo"] += 2
+
+            # ARRENDERSI
+            elif scelta_finale == "4":
+
+                print("\n✋ Ti arrendi.")
+
+                giocatore["tempo"] -= 2
+
+            pausa()
+
+        # NASCONDERSI
+        elif scelta_fuga == "2":
+
+            print("\n🫥 Eviti problemi.")
+
+            pausa()
+
+        # INFORMI
+        elif scelta_fuga == "3":
+
+            print("\n📢 Informi le guardie.")
+
+            reputazione += 2
+            giocatore["tempo"] -= 1
+
+            pausa()
+
+        # IGNORI
+        elif scelta_fuga == "4":
+
+            print("\n😐 Ignori tutto.")
+
+            pausa()
+
+        # Nuova distanza casuale
+        distanza = random.randint(2, 6)
+
+        prossimo_evento_fuga = giorno + distanza
+
+    # =========================================
+    # CONTROLLO
+    # =========================================
+
+    if energia <= 0:
+
+        energia = 5
+
+        print("\n😴 Hai dormito tutta la notte.")
+
+        pausa()
+
+    if giocatore["tempo"] < 0:
+        giocatore["tempo"] = 0
+
+    giorno += 1
+
+# =========================================
+# FINALE
+# =========================================
+
+clear()
+
+print("========================================")
+print("                FINE")
+print("========================================\n")
+
+if libero:
+
+    print("🏃 Finale segreto raggiunto.")
+
+else:
+
+    print("🎉", giocatore["nome"],
+          "ha terminato la pena.")
